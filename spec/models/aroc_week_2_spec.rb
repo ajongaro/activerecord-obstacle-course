@@ -19,7 +19,8 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    # require 'pry'; binding.pry
+    orders_of_user_3 = Order.where(user_id: @user_3.id )
     # ------------------------------------------------------------
 
     # Expectation
@@ -38,7 +39,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders = Order.order(amount: :desc)
     # ------------------------------------------------------------
 
     # Expectation
@@ -57,7 +58,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders = Order.order(:amount)
     # ------------------------------------------------------------
 
     # Expectation
@@ -76,7 +77,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    items = Item.where.not(id: items_not_included)
     # ------------------------------------------------------------
 
     # Expectation
@@ -92,7 +93,8 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    grouped_items = @order_3.items.order(:name)
+
     # ------------------------------------------------------------
 
     # Expectation
@@ -107,7 +109,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    names = Item.pluck(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -121,7 +123,9 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
       'Abercrombie', 'Eddie Bauer', 'Banana Republic', 'J.crew',
       'Abercrombie', 'Dickies', 'Giorgio Armani', 'Abercrombie',
       'Abercrombie', 'Dickies', 'Giorgio Armani', 'Abercrombie',
+
       'Dickies', 'Giorgio Armani', 'Banana Republic', 'J.crew',
+
       'Dickies', 'Giorgio Armani', 'Izod', 'Calvin Klein',
       'Eddie Bauer', 'Izod', 'Calvin Klein', 'Fox',
       'Abercrombie', 'Eddie Bauer', 'Banana Republic', 'J.crew',
@@ -144,10 +148,8 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
-    # names = Order.all.joins(:items).pluck(:name)
+    names = Order.all.joins(:items).pluck(:name)
     # ------------------------------------------------------------
-
     # Expectation
     expect(names.sort).to eq(expected_result.sort)
   end
